@@ -20,21 +20,24 @@ block content
       thead(class="thead-light")
         tr  
           th(scope="col") Imagen
-          th(scope="col") Nombre
-          th(scope="col") Descripcion
+          th(scope="col" style="width: 25%") Nombre
+          th(scope="col" style="width: 25%") Descripcion
           th(scope="col" class="text-center") Ubicación
           th(scope="col" class="text-center") Precio 
-          th(scope="col" class="text-center") Unidades disponibles
+          th(scope="col" class="text-center") Unidades
+          th(scope="col" class="text-center") Añadir al carro
       tbody
       each item in items    
         tr
           td
-            img(src=item.imagePath, alt="")
+            img(src=item.imagePath)
           td=item.name
           td=item.description
           td(class="text-center")=item.location
           td(class="text-center")=item.price
           td(class="text-center")=item.stock
+          td(align="center")
+            button(type="button" class="btn btn-outline-primary center-block") Añadir
 
 
  
