@@ -36,7 +36,6 @@ router.post('/register',function(req,res){
   req.checkBody('password2','Las contraseñas son distintas').equals(req.body.password);
 
   const errors = req.validationErrors();
-  console.log(errors);
 
   if(errors){
     res.render('register',{
@@ -80,24 +79,58 @@ passport.use(new LocalStrategy(
     });
   }));
 
-  passport.serializeUser(function(user, done) {
+passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(id, done) {
     User.getUserById(id, function(err, user) {
       done(err, user);
     });
   });
 
 
+// Settings User
+router.post('/settings',function(req,res){
+
+    const oldpassword = req.body.oldpassword;
+    const pass = req.body.password;
+    const pass2 = req.body.password2;
+  
+    //Validation
+    req.checkBody('oldpassword','Introduce tu contraseña actual').notEmpty();
+    req.checkBody('password','Introduce una contraseña').notEmpty();
+    req.checkBody('password2','Las contraseñas son distintas').equals(req.body.password);
+  
+    const errors = req.validationErrors();
+  
+    if(errors){
+      res.render('settings',{
+        errors: errors
+      });
+    } else {
+      User.getUserByUsername("al3xeezer", function(err,user){
+        if(err) throw err;
+  
+        User.comparePassword(pass,user.password,function(err,isMatch){
+          if(err) throw err;
+          if(isMatch){
+            console.log("Donde esta tu dios ahora");
+          } else {
+            return done(null,false, {message: 'Invalid password'});
+          }
+        });
+      });
+     }
+  });
+  
 router.post('/login',
   passport.authenticate('local', {successRedirect: '/items/home',failureRedirect: '/users/login', failureFlash: true}),
   function(req, res) {
     res.redirect('/items/home');
   });
 
-  router.get('/logout', function(req,res){
+router.get('/logout', function(req,res){
     req.logout();
     req.flash('success_msg','Has cerrado sesión correctamente');
     res.redirect('/users/login');
