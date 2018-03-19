@@ -1,0 +1,18 @@
+extends layouts/layout
+block content
+  body
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Shonen INC</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+    if !user
+        <a class="p-2 text-dark" href="/users/register">Registrarse</a>
+    </nav>
+    if !user
+      <a class="btn btn-outline-primary" href="/users/login">Iniciar Sesión</a>
+    else
+      a(class="btn btn-outline-primary" href="/users/logout") Cerrar Sesión
+  </div>
+  
+  div(class="col-md-3 center-block quitar-float text-center espacio-arriba mx-auto")
+    img(src="imgs/Icono.png")
+    h2 Te conseguimos lo que necesitas

@@ -1,0 +1,22 @@
+extends layouts/layout
+block content
+  link(href="/css/signin.css" rel="stylesheet")
+  body(class="text-center")
+  
+  <form class="form-signin" method="post" action="/users/login">
+    <img class="mb-4 mx-auto" src="/imgs/Shonen_logo.png" alt="" width="150" height="150">
+    <h1 class="h3 mb-3 font-weight-normal mx-">Iniciar Sesión</h1>
+    
+    <label for="inputEmail" class="sr-only">Nombre de usuario</label>
+    <input type="text" class="form-control" placeholder="Username" name="username"required autofocus>
+    <label for="inputPassword" class="sr-only">Contraseña</label>
+    <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Confirmar</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    
+    div(class="row")
+      div(class="col-lg-12") 
+  </form>
+  
+    

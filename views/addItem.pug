@@ -1,0 +1,67 @@
+extends layouts/layout
+block content
+  body
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">Shonen INC</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/items/home">Página principal</a>
+      </nav>      
+      <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil de usuario</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
+        </div>
+    </div>
+  
+    <div class="container espacio-arriba30 espacio-abajo">
+      <div class="row mx-auto">
+        <div class="col-md-12 order-md-1">
+          <h4 class="mb-3">Nuevo Producto</h4>
+                  
+          <form class="needs-validation mx-auto" method="post" action="/items/addItem" novalidate>
+          
+            if errors
+              each error in errors
+                div(class="alert alert-danger")=error.msg
+
+            <div class="mb-3">
+            <label for="Nombre">Nombre</label>
+            <input type="text" id="nombre" class="form-control" placeholder="nombre" name="name" required>
+            </div>
+            
+            <div class="mb-3">
+            <label for="Type">Tipo de objeto</label>
+            <input type="text" id="type" class="form-control" placeholder="tipo" name="type" required>
+            </div>
+            
+            <div class="mb-3">
+            <label for="Precio">Precio</label>
+            <input type="text" id="price" class="form-control" placeholder="precio" name="price" required>
+            </div>
+            
+            <div class="mb-3">
+            <label for="Descripción">Descripción</label>
+            <input type="text" id="description" class="form-control" placeholder="descripción" name="description" required>
+            </div>
+            
+            <div class="mb-3">
+            <label for="Localización">Localización</label>
+            <input type="text" id="location" class="form-control" placeholder="localizacion" name="location" required>
+            </div>
+            
+            <div class="mb-3">
+            <label for="Stock">Unidades en stock</label>
+            <input type="number" id="stock" class="form-control" placeholder="5" name="stock" required>
+            </div>
+            
+            <div class="mb-3">
+            <label for="Imagen">Imagen (URL)</label>
+            <input type="text" id="imagePath" class="form-control" placeholder="URL" name="imagePath" required>
+            </div>
+              
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Confirmar cambios</button>
+          </form>
+        </div>
+      </div>
+    </div>
