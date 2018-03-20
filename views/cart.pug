@@ -18,7 +18,7 @@ html(lang="en")
             <img src="/imgs/Shonen_logo.png" width="30" height="30" class="d-inline-block align-top espacio-derecha" alt="">
             <h5 class="my-0 mr-md-auto font-weight-normal">SHONEN.Inc</h5>
             <nav class="my-2 my-md-0 mr-md-3">
-                <a class="p-2 text-dark" href="#">Carrito</a>
+                <a class="p-2 text-dark" href="/items/home">Página principal</a>
                 <a class="p-2 text-dark" href="/items/addItem">Añadir productos</a>
             </nav>      
             <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil de usuario</a>
@@ -34,74 +34,59 @@ html(lang="en")
             div(class="container")
                 h1(class="jumbotron-heading") TU CARRITO
 
+        if myitems
+            div(class="container mb-4")
+                div(class="row")
+                    div(class="col-12")
+                        div(class="table-responsive")
+                            table(class="table table-striped")
+                                thead
+                                    tr
+                                        th(scope="col")
+                                        th(scope="col") Producto
+                                        th(scope="col") Localización
+                                        th(scope="col" class="text-center" style="width: 10%") Cantidad
+                                        th(scope="col" class="text-center") Precio
+                                        th
+                                tbody
+                                    each myitem in myitems
+                                        tr
+                                            td
+                                                img(src=myitem.item.imagePath)
+                                            td=myitem.item.name
+                                            td=myitem.item.location
+                                            td(class="text-center")=myitem.qty
+                                            td(class="text-center")=myitem.price
+                                            td(class="text-right")
+                                                button(class="btn btn-sm btn-danger")
+                                                    i(class="fa fa-trash")
+                                    tr
+                                        td
+                                        td
+                                        td
+                                        td
+                                        td Sub-Total
+                                        td(class="text-right") #{totalPrice} €
+                                    tr
+                                        td
+                                        td
+                                        td
+                                        td
+                                        td Gastos de envío
+                                        td(class="text-right") 6,90 €
+                                    tr
+                                        td
+                                        td
+                                        td
+                                        td
+                                        td
+                                            strong Total
+                                        td(class="text-right")
+                                            strong #{totalPrice + 6.90} €
 
-        div(class="container mb-4")
+        div(class="col mb-2")
             div(class="row")
-                div(class="col-12")
-                    div(class="table-responsive")
-                        table(class="table table-striped")
-                            thead
-                                tr
-                                    th(scope="col")
-                                    th(scope="col") Producto
-                                    th(scope="col") Localización
-                                    th(scope="col" class="text-center") Cantidad
-                                    th(scope="col" class="text-right") Precio
-
-                            <tbody>
-                                <tr>
-                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                    <td>Product Name Dada</td>
-                                    <td>Abando</td>
-                                    <td><input class="form-control" type="text" value="1" /></td>
-                                    <td class="text-right">124,90 €</td>
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                    <td>Product Name Toto</td>
-                                    <td>Abando</td>
-                                    <td><input class="form-control" type="text" value="1" /></td>
-                                    <td class="text-right">33,90 €</td>
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                    <td>Product Name Titi</td>
-                                    <td>Abando</td>
-                                    <td><input class="form-control" type="text" value="1" /></td>
-                                    <td class="text-right">70,00 €</td>
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Sub-Total</td>
-                                    <td class="text-right">255,90 €</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Gastos de envío</td>
-                                    <td class="text-right">6,90 €</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><strong>Total</strong></td>
-                                    <td class="text-right"><strong>346,90 €</strong></td>
-                                </tr>
-                            </tbody>
-
-                div(class="col mb-2")
-                    div(class="row")
-                        div(class="col-sm-12  col-md-6")
-                            a(href="/items/home" class="btn btn-light btn-block" role="button" aria-pressed="true") Seguir comprando
-                        div(class="col-sm-12 col-md-6 text-right")
-                            a(href="/items/home" class="btn btn-success btn-block" role="button" aria-pressed="true") Realizar pedido
+                div(class="col-sm-12  col-md-6")
+                    a(href="/items/home" class="btn btn-light btn-block" role="button" aria-pressed="true") Seguir comprando
+                div(class="col-sm-12 col-md-6 text-right")
+                    a(href="/items/home" class="btn btn-success btn-block" role="button" aria-pressed="true") Realizar pedido

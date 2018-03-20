@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // ---------------- Definición del esquema ----------------------//
 
-var itemSchema = mongoose.Schema({
+const itemSchema = mongoose.Schema({
   name: {type: String,required: true},
   type: {type: String,required: true},
   price: {type: Number,required: true},
@@ -10,12 +10,11 @@ var itemSchema = mongoose.Schema({
   location: {type: String,required: true},
   stock: {type: Number,required: true},
   imagePath: {type: String,required: true}
-
 });
 
 // ---------------- Exportamos el modelo creado ----------------------//
 
-var Item= module.exports = mongoose.model('Item',itemSchema);
+const Item= module.exports = mongoose.model('Item',itemSchema);
 
 // ---------------- Métodos de la base de datos ----------------------//
 

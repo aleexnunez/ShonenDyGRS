@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
 // ---------------- Definición del esquema ----------------------//
 
-var UserSchema= mongoose.Schema({
+var UserSchema= new Schema({
   username: {
     type: String,
     index: true
@@ -16,7 +17,11 @@ var UserSchema= mongoose.Schema({
   },
   name: {
     type: String,
-  }
+  },
+  carts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'cart'
+  }]
 });
 
 
