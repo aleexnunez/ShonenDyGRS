@@ -83,10 +83,14 @@ html(lang="en")
                                             strong Total
                                         td(class="text-right")
                                             strong #{totalPrice + 6.90} €
-
-        div(class="col mb-2")
-            div(class="row")
-                div(class="col-sm-12  col-md-6")
-                    a(href="/items/home" class="btn btn-light btn-block" role="button" aria-pressed="true") Seguir comprando
-                div(class="col-sm-12 col-md-6 text-right")
-                    a(href="/items/home" class="btn btn-success btn-block" role="button" aria-pressed="true") Realizar pedido
+            div(class="col mb-2")
+                div(class="row")
+                    div(class="col-sm-12  col-md-6")
+                        a(href="/items/home" class="btn btn-light btn-block" role="button" aria-pressed="true") Seguir comprando
+                    div(class="col-sm-12 col-md-6 text-right")
+                        a(href="/items/checkout" class="btn btn-success btn-block" role="button" aria-pressed="true") Realizar pedido
+        else
+            h3(class="text-center") No tienes ningun producto en el carro
+            br
+            br
+        

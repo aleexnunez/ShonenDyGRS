@@ -7,6 +7,7 @@ const router = express.Router();
 // El modelo/schema Item para poder definir las funciones
 const Item = require('../models/item');
 const Cart = require('../models/cart');
+const Order = require('../models/order');
 
 
 
@@ -26,16 +27,34 @@ router.get('/addItem',function(req,res){
   res.render('addItem');
 });
 
-// GET Cart (donde añadimos los productos)
+// GET Cart (donde vemos los productos añadidos)
 router.get('/cart',function(req,res){
   if (!req.session.cart) {
     return res.render('cart', {myitems: null});
-} 
+  } 
  var cart = new Cart(req.session.cart);
  res.render('cart', {myitems: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
+router.get('/checkout',function(req,res){
+  if (!req.session.cart) {
+    return res.redirect('cart');
+  } 
+  var cart = new Cart(req.session.cart);
+  var order = new Order({
+    user: req.user,
+    cart: cart
+  });
+  console.log(order);
+  order.save(function(err,result)
+  {
+      req.session.cart=null;
+      res.redirect('home');
+  })
+});
 
+
+// GET Añadir al carro (cuando pulsamos "añadir")
 router.get('/add-to-cart/:id', function(req, res, next) {
   var itemId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -52,7 +71,6 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 });
 
 // POST AddItem (cuando le damos a añadir el producto)
-
 router.post('/addItem',function(req,res){
 
   // Recojo los datos introducidos en el formulario

@@ -79,6 +79,7 @@ app.use(function(req,res,next){
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
   res.locals.session = req.session;
+  res.locals.session.cart=req.session.cart;
   next();
 });
 

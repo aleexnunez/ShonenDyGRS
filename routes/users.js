@@ -132,6 +132,7 @@ router.post('/login',
 
 router.get('/logout', function(req,res){
     req.logout();
+    req.session.cart=null;
     req.flash('success_msg','Has cerrado sesión correctamente');
     res.redirect('/users/login');
   })
