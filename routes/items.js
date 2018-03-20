@@ -25,6 +25,11 @@ router.get('/addItem',function(req,res){
   res.render('addItem');
 });
 
+// GET Cart (donde añadimos los productos)
+router.get('/cart',function(req,res){
+  res.render('cart');
+});
+
 // POST AddItem (cuando le damos a añadir el producto)
 
 router.post('/addItem',function(req,res){

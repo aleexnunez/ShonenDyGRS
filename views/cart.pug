@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css")
+        script(src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Tu cesta de la compra
+    body
+        link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous")
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <img src="/imgs/Shonen_logo.png" width="30" height="30" class="d-inline-block align-top espacio-derecha" alt="">
+            <h5 class="my-0 mr-md-auto font-weight-normal">SHONEN.Inc</h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="#">Carrito</a>
+                <a class="p-2 text-dark" href="/items/addItem">Añadir productos</a>
+            </nav>      
+            <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil de usuario</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/users/settings">Ajustes</a>
+                <a class="dropdown-item" href="#">Pedidos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
+                </div>
+        </div>
+
+        section(class="jumbotron text-center")
+            div(class="container")
+                h1(class="jumbotron-heading") TU CARRITO
+
+
+        div(class="container mb-4")
+            div(class="row")
+                div(class="col-12")
+                    div(class="table-responsive")
+                        table(class="table table-striped")
+                            thead
+                                tr
+                                    th(scope="col")
+                                    th(scope="col") Producto
+                                    th(scope="col") Localización
+                                    th(scope="col" class="text-center") Cantidad
+                                    th(scope="col" class="text-right") Precio
+
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                    <td>Product Name Dada</td>
+                                    <td>Abando</td>
+                                    <td><input class="form-control" type="text" value="1" /></td>
+                                    <td class="text-right">124,90 €</td>
+                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                </tr>
+                                <tr>
+                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                    <td>Product Name Toto</td>
+                                    <td>Abando</td>
+                                    <td><input class="form-control" type="text" value="1" /></td>
+                                    <td class="text-right">33,90 €</td>
+                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                </tr>
+                                <tr>
+                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                    <td>Product Name Titi</td>
+                                    <td>Abando</td>
+                                    <td><input class="form-control" type="text" value="1" /></td>
+                                    <td class="text-right">70,00 €</td>
+                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Sub-Total</td>
+                                    <td class="text-right">255,90 €</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Gastos de envío</td>
+                                    <td class="text-right">6,90 €</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-right"><strong>346,90 €</strong></td>
+                                </tr>
+                            </tbody>
+
+                div(class="col mb-2")
+                    div(class="row")
+                        div(class="col-sm-12  col-md-6")
+                            a(href="/items/home" class="btn btn-light btn-block" role="button" aria-pressed="true") Seguir comprando
+                        div(class="col-sm-12 col-md-6 text-right")
+                            a(href="/items/home" class="btn btn-success btn-block" role="button" aria-pressed="true") Realizar pedido
