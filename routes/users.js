@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const User = require('../models/user');
+const Order = require('../models/order');
+const Cart = require('../models/cart');
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -9,14 +13,30 @@ router.get('/register',function(req,res){
   res.render('register');
 });
 
+// Settings
+router.get('/settings',function(req,res){
+  res.render('settings');
+});
+
+
 // Login
 router.get('/login',function(req,res){
   res.render('login');
 });
 
-// Settings
-router.get('/settings',function(req,res){
-  res.render('settings');
+// Orders
+router.get('/orders',function (req, res, next) {
+  Order.find({user: req.user}, function(err, orders) {
+      if (err) {
+          return res.write('Error!');
+      }
+      var cart;
+      orders.forEach(function(order) {
+          cart = new Cart(order.cart);
+          order.items = cart.generateArray();
+      });
+      res.render('orders', { orders: orders });
+  });
 });
 
 // Register User
