@@ -53,6 +53,16 @@ router.get('/checkout',function(req,res){
   })
 });
 
+// GET Añadir al carro (cuando pulsamos "añadir")
+router.get('/reduce/:id', function(req, res, next) {
+  var itemId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.reduceByOne(itemId);
+  req.session.cart = cart;
+  res.redirect('/items/cart');
+
+});
 
 // GET Añadir al carro (cuando pulsamos "añadir")
 router.get('/add-to-cart/:id', function(req, res, next) {

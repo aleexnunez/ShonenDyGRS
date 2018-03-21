@@ -34,7 +34,7 @@ html(lang="en")
             div(class="container")
                 h1(class="jumbotron-heading") TU CARRITO
 
-        if myitems
+        if myitems && myitems.length != 0
             div(class="container mb-4")
                 div(class="row")
                     div(class="col-12")
@@ -58,7 +58,7 @@ html(lang="en")
                                             td(class="text-center")=myitem.qty
                                             td(class="text-center")=myitem.price
                                             td(class="text-right")
-                                                button(class="btn btn-sm btn-danger")
+                                                a(class="btn btn-sm btn-danger" href="reduce/"+ myitem.item._id)
                                                     i(class="fa fa-trash")
                                     tr
                                         td
