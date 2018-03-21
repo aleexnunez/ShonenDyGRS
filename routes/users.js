@@ -7,6 +7,7 @@ const Cart = require('../models/cart');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
 
 // Register
 router.get('/register',function(req,res){
@@ -17,7 +18,6 @@ router.get('/register',function(req,res){
 router.get('/settings',function(req,res){
   res.render('settings');
 });
-
 
 // Login
 router.get('/login',function(req,res){
@@ -129,19 +129,32 @@ router.post('/settings',function(req,res){
         errors: errors
       });
     } else {
-      User.getUserByUsername("al3xeezer", function(err,user){
+      User.getUserById(req.user._id, function(err,user){
         if(err) throw err;
-  
-        User.comparePassword(pass,user.password,function(err,isMatch){
-          if(err) throw err;
-          if(isMatch){
-            console.log("Donde esta tu dios ahora");
-          } else {
-            return done(null,false, {message: 'Invalid password'});
-          }
-        });
+          
+          console.log("VERIFICANDO PASS: Usuario "+req.user._id+" con pass: "+user.password);
+          
+          User.comparePassword(oldpassword,user.password,function(err,isMatch){
+            if(err) throw err;
+            if(isMatch){
+              console.log("Contraseña introducida: OK");
+
+              bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(pass, salt, function(err, hash) {
+                  User.findByIdAndUpdate(user._id, {password: hash }, function(req,res) {
+                    if(err) throw err;
+                    console.log("Contraseña actualizada correctamente");
+                  })
+                });
+              });
+              res.redirect("/items/home");
+            } else {
+              console.log("Contraseña introducida: Incorrecta");
+              res.render('settings')
+            }
+          });
       });
-     }
+    }
   });
   
 router.post('/login',
