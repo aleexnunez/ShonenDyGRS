@@ -23,5 +23,24 @@ module.exports.createItem = function(newItem,callback) {
   newItem.save(callback);
 }
 
+module.exports.updateItem = function(id,numItem,callback){
+  Item.findById(id, function(err,findedItem){
+    console.log("* ACTUALIZANDO OBJETO: "+findedItem.name);
+    if(findedItem.stock > numItem){
+      findedItem.stock -= numItem;
+      findedItem.save(callback);
+    } else if(findedItem.stock == numItem){
+      Item.findByIdAndRemove(id,function(err) {
+        if (err)
+            res.send(err);
+        else
+          console.log("* ELIMINANDO OBJETO: "+findedItem.name);
+      });
+    } else{
+      
+    }
+  })
+}
+
 
 

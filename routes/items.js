@@ -17,6 +17,7 @@ const Order = require('../models/order');
 router.get('/home',function(req,res){
   Item.find({}, function(err, docs) {
     if (!err){ 
+        var cart = new Cart(req.session.cart);
         res.render('home',{items: docs});
     } else {throw err;}
   });
@@ -45,9 +46,15 @@ router.get('/checkout',function(req,res){
     user: req.user,
     cart: cart
   });
-  console.log(order);
+
   order.save(function(err,result)
   {
+      var products = cart.generateArray();
+
+      for(var i=0; i<products.length; i++)
+      {
+        Item.updateItem(products[i].item._id,products[i].qty);
+      }
       req.session.cart=null;
       res.redirect('home');
   })
