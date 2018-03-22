@@ -17,8 +17,7 @@ const Order = require('../models/order');
 router.get('/home',function(req,res){
   Item.find({}, function(err, docs) {
     if (!err){ 
-        var cart = new Cart(req.session.cart);
-        res.render('home',{items: docs});
+        res.render('home',{ items: docs });
     } else {throw err;}
   });
 });
@@ -53,10 +52,22 @@ router.get('/checkout',function(req,res){
 
       for(var i=0; i<products.length; i++)
       {
-        Item.updateItem(products[i].item._id,products[i].qty);
+        // Item.findById(products[i].item._id ,function(err,findedItem){
+
+        // var stock=findedItem.stock;
+        //   console.log("* STOCK DISPONIBLE: "+stock);
+                  
+        //   if(stock < products[i].qty){
+        //     req.flash('info', 'Vaya! Parece ser que no tenemos suficiente stock, disculpa las molestias');
+        //     return res.redirect('/items/home');
+        //   } 
+          
+        // })
+    
+        Item.updateItem(products[i].item._id,products[i].qty,req);
       }
       req.session.cart=null;
-      res.redirect('home');
+      res.redirect('/items/home');
   })
 });
 
@@ -82,7 +93,6 @@ router.get('/add-to-cart/:id', function(req, res, next) {
      }
       cart.add(item, item.id);
       req.session.cart = cart;
-      console.log(req.session.cart);
       res.redirect('/items/home');
   });
 });

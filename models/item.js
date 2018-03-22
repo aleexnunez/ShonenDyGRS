@@ -23,7 +23,7 @@ module.exports.createItem = function(newItem,callback) {
   newItem.save(callback);
 }
 
-module.exports.updateItem = function(id,numItem,callback){
+module.exports.updateItem = function(id,numItem,callback,req){
   Item.findById(id, function(err,findedItem){
     console.log("* ACTUALIZANDO OBJETO: "+findedItem.name);
     if(findedItem.stock > numItem){
@@ -36,9 +36,7 @@ module.exports.updateItem = function(id,numItem,callback){
         else
           console.log("* ELIMINANDO OBJETO: "+findedItem.name);
       });
-    } else{
-      
-    }
+    } 
   })
 }
 
