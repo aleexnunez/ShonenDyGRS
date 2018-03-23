@@ -1,49 +1,43 @@
 extends layouts/layout
 block content
   body
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Shonen INC</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/items/home">Página principal</a>
-      </nav>      
-      <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil de usuario</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Ajustes</a>
-          <a class="dropdown-item" href="#">Pedidos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
-        </div>
-    </div>
+    div(class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow")
+      img(src="/imgs/Shonen_logo.png" width="30" height="30" class="d-inline-block align-top espacio-derecha" alt="")
+      h5(class="my-0 mr-md-auto font-weight-normal") SHONEN.Inc
+      nav(class="my-2 my-md-0 mr-md-3")
+        a(class="p-2 text-dark" href="/items/home") Página principal
+        a(class="p-2 text-dark" href="/items/addItem") Añadir productos     
+      a(class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Perfil de usuario
+      div(class="dropdown-menu" aria-labelledby="navbarDropdown")
+        a(class="dropdown-item" href="/users/settings") Ajustes
+        a(class="dropdown-item" href="/users/orders") Pedidos
+        div(class="dropdown-divider")
+        a(class="dropdown-item" href="/users/logout") Cerrar sesión
   
-    <div class="container espacio-arriba">
-      <div class="row mx-auto">
-        <div class="col-md-12 order-md-1">
-          <h4 class="mb-3">Tu información</h4>
+    div(class="container espacio-arriba")
+      div(class="row mx-auto")
+        div(class="col-md-12 order-md-1") 
+          h4(class="mb-3") Tu información
                   
-          <form class="needs-validation mx-auto" method="post" action="#" novalidate>
+          form(class="needs-validation mx-auto" method="post" action="#" novalidate) 
           
             if errors
               each error in errors
                 div(class="alert alert-danger")=error.msg
 
-            <div class="mb-3">
-            <label for="inputPasswordOld">Contraseña anterior</label>
-            <input type="password" id="oldPassword" class="form-control" placeholder="Contraseña" name="oldpassword" required>
-            </div>
-              
-            <div class="mb-3">
-            <label for="inputPassword">Contraseña nueva</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
-            </div>
+            div(class="mb-3") 
+              label(for="inputPasswordOld") Contraseña actual
+              input(type="password" id="oldPassword" class="form-control" placeholder="Contraseña" name="oldpassword" required) 
+               
+            div(class="mb-3") 
+              label(for="inputPassword") Contraseña nueva
+              input(type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required) 
+               
+            div(class="mb-3") 
+              label(for="inputPassword") Confirma la contraseña
+              input(type="password" id="inputPassword2" class="form-control" placeholder="Contraseña" name="password2" required) 
             
-            <div class="mb-3">
-            <label for="inputPassword">Confirma la contraseña</label>
-            <input type="password" id="inputPassword2" class="form-control" placeholder="Contraseña" name="password2" required>
-            </div>
         
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Confirmar cambios</button>
-          </form>
-        </div>
-      </div>
-    </div>
+            hr(class="mb-4") 
+            button(class="btn btn-primary btn-lg btn-block" type="submit") Confirmar cambios
+ 

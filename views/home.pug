@@ -1,21 +1,19 @@
 extends layouts/layout
 block content
   body
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <img src="/imgs/Shonen_logo.png" width="30" height="30" class="d-inline-block align-top espacio-derecha" alt="">
-      <h5 class="my-0 mr-md-auto font-weight-normal">SHONEN.Inc</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/items/cart">Carrito</a>
-        <a class="p-2 text-dark" href="/items/addItem">Añadir productos</a>
-      </nav>      
-      <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil de usuario</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/users/settings">Ajustes</a>
-          <a class="dropdown-item" href="/users/orders">Pedidos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
-        </div>
-    </div>
+    div(class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow")
+      img(src="/imgs/Shonen_logo.png" width="30" height="30" class="d-inline-block align-top espacio-derecha" alt="")
+      h5(class="my-0 mr-md-auto font-weight-normal") SHONEN.Inc
+      nav(class="my-2 my-md-0 mr-md-3")
+          a(class="p-2 text-dark" href="/items/cart") Carrito
+          a(class="p-2 text-dark" href="/items/addItem") Añadir productos     
+      a(class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Perfil de usuario
+      div(class="dropdown-menu" aria-labelledby="navbarDropdown")
+          a(class="dropdown-item" href="/users/settings") Ajustes
+          a(class="dropdown-item" href="/users/orders") Pedidos
+          div(class="dropdown-divider")
+          a(class="dropdown-item" href="/users/logout") Cerrar sesión
+          
     table(class="table")
       thead(class="thead-light")
         tr  
