@@ -39,36 +39,26 @@ router.get('/cart',function(req,res){
 router.get('/checkout',function(req,res){
   if (!req.session.cart) {
     return res.redirect('cart');
+  }
+  else{
+    var cart = new Cart(req.session.cart);
+    var order = new Order({
+      user: req.user,
+      cart: cart
+    });
+  
+    order.save(function(err,result)
+    {
+        var products = cart.generateArray();
+
+        for(var i=0; i<products.length; i++)
+        {
+          Item.updateItem(products[i].item._id,products[i].qty);      
+        }
+        req.session.cart=null;
+        res.redirect('/items/home');  
+    })
   } 
-  var cart = new Cart(req.session.cart);
-  var order = new Order({
-    user: req.user,
-    cart: cart
-  });
-
-  order.save(function(err,result)
-  {
-      var products = cart.generateArray();
-
-      for(var i=0; i<products.length; i++)
-      {
-        // Item.findById(products[i].item._id ,function(err,findedItem){
-
-        // var stock=findedItem.stock;
-        //   console.log("* STOCK DISPONIBLE: "+stock);
-                  
-        //   if(stock < products[i].qty){
-        //     req.flash('info', 'Vaya! Parece ser que no tenemos suficiente stock, disculpa las molestias');
-        //     return res.redirect('/items/home');
-        //   } 
-          
-        // })
-    
-        Item.updateItem(products[i].item._id,products[i].qty,req);
-      }
-      req.session.cart=null;
-      res.redirect('/items/home');
-  })
 });
 
 // GET Añadir al carro (cuando pulsamos "añadir")
