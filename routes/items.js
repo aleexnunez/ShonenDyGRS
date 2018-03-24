@@ -135,6 +135,7 @@ router.post('/addItem',ensureAuthenticated,function(req,res){
     }
 });
 
+// Funcion para comprobar que el user esta logeado
 function ensureAuthenticated(req,res,next){
   if(req.isAuthenticated()){
     return next();
@@ -143,6 +144,5 @@ function ensureAuthenticated(req,res,next){
     res.redirect('/users/login');
   }
 }
-
 
 module.exports = router;
