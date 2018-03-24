@@ -14,7 +14,7 @@ const Order = require('../models/order');
 //---------------- Rutas que vamos a manejar  -----------------//
 
 // GET Home (donde mostramos los productos)
-router.get('/home',function(req,res){
+router.get('/home',ensureAuthenticated,function(req,res){
   Item.find({}, function(err, docs) {
     if (!err){ 
         res.render('home',{ items: docs });
@@ -23,12 +23,12 @@ router.get('/home',function(req,res){
 });
 
 // GET AddItem (donde añadimos los productos)
-router.get('/addItem',function(req,res){
+router.get('/addItem',ensureAuthenticated,function(req,res){
   res.render('addItem');
 });
 
 // GET Cart (donde vemos los productos añadidos)
-router.get('/cart',function(req,res){
+router.get('/cart',ensureAuthenticated,function(req,res){
   if (!req.session.cart) {
     return res.render('cart', {myitems: null});
   } 
@@ -36,7 +36,7 @@ router.get('/cart',function(req,res){
  res.render('cart', {myitems: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
-router.get('/checkout',function(req,res){
+router.get('/checkout',ensureAuthenticated,function(req,res){
   if (!req.session.cart) {
     return res.redirect('cart');
   }
@@ -62,7 +62,7 @@ router.get('/checkout',function(req,res){
 });
 
 // GET Añadir al carro (cuando pulsamos "añadir")
-router.get('/reduce/:id', function(req, res, next) {
+router.get('/reduce/:id',ensureAuthenticated, function(req, res, next) {
   var itemId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
@@ -73,7 +73,7 @@ router.get('/reduce/:id', function(req, res, next) {
 });
 
 // GET Añadir al carro (cuando pulsamos "añadir")
-router.get('/add-to-cart/:id', function(req, res, next) {
+router.get('/add-to-cart/:id',ensureAuthenticated, function(req, res, next) {
   var itemId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
@@ -88,7 +88,7 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 });
 
 // POST AddItem (cuando le damos a añadir el producto)
-router.post('/addItem',function(req,res){
+router.post('/addItem',ensureAuthenticated,function(req,res){
 
   // Recojo los datos introducidos en el formulario
   const name = req.body.name;
@@ -134,5 +134,15 @@ router.post('/addItem',function(req,res){
       res.redirect('/items/home');
     }
 });
+
+function ensureAuthenticated(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  } else{
+    req.flash('error_msg','Tienes que iniciar sesión para acceder');
+    res.redirect('/users/login');
+  }
+}
+
 
 module.exports = router;
