@@ -16,7 +16,7 @@ const LocalStrategy = require('passport-local').Strategy;
   
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/authDyGRS');
+mongoose.connect('mongodb://192.168.101.101,192.168.102.102,192.168.103.103/authDyGRS?replicaSet=rs0&readPreference=primaryPreferred');
 const db = mongoose.connection;
 
 // Routes
