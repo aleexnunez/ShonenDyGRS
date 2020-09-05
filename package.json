@@ -18,14 +18,15 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
-    "mongodb": "*",
-    "mongoose": "*",
+    "mongodb": "^3.6.1",
+    "mongoose": "^5.10.3",
+    "npm-check": "^5.9.2",
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
     "pug": "^2.0.1"
   },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "nodemon": "^2.0.4"
   }
 }
